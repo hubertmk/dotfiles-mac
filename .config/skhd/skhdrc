@@ -138,3 +138,10 @@ shift + alt - space : \
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+
+alt - b : open -n -a "Brave Browser"
+alt - c : open -n -a "Google Chrome"
+alt - n : open -a "Finder" 
+
+
