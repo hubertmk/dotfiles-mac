@@ -1,3 +1,4 @@
+sudo nvram boot-args=-arm64e_preview_abi
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -41,7 +42,7 @@ yabai -m config mouse_action2               resize
 yabai -m config external_bar 		    all:30:0
 # ===== Rules ==================================
 
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" #manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="macfeh" app="^macfeh$" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
@@ -73,4 +74,3 @@ focus_first_window_in_space() {
 
 # Add the function to the space_changed event
 yabai -m signal --add event=space_changed action="focus_first_window_in_space"
-

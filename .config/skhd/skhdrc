@@ -16,7 +16,7 @@ cmd + shift - s : osascript -e 'tell application "System Events" to sleep'
 
 # === launch commands ===
 # open kitty terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty 
+alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty 
 
 # open brave
 #cmd + shift - return : open -na /Applications/Brave\ Browser.app
@@ -136,7 +136,7 @@ shift + alt - space : \
     yabai -m window --toggle border
 
 # Make window native fullscreen
-alt - f         : yabai -m window --toggle zoom-fullscreen
+alt - w         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
 
