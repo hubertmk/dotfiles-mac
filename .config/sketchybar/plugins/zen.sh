@@ -2,7 +2,7 @@
 
 zen_on() {
   sketchybar --set wifi drawing=off \
-             --set apple.logo drawing=on \
+             --set apple.logo drawing=off \
              --set '/cpu.*/' drawing=off \
              --set calendar icon.drawing=off \
              --set separator drawing=off \

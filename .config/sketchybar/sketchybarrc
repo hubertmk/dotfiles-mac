@@ -9,6 +9,10 @@ PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are st
 FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3    # All paddings use this value (icon, label, background)
 
+# aerospace setting
+AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
 # Setting up and starting the helper process
 HELPER=git.felix.helper
 killall helper
@@ -66,25 +70,30 @@ defaults=(
 
 sketchybar --default "${defaults[@]}"
 
+sketchybar --default "${defaults[@]}"
+
 # Left
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/yabai.sh"
 source "$ITEM_DIR/front_app.sh"
+#source "$ITEM_DIR/yabai.sh"
 
 # Center
-source "$ITEM_DIR/spotify.sh"
+# source "$ITEM_DIR/spotify.sh"
 # source "$ITEM_DIR/media.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/brew.sh"
+source "$ITEM_DIR/input_source.sh"
+source "$ITEM_DIR/battery.sh"
+#source "$ITEM_DIR/brew.sh"
 #source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/wifi.sh"
-source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/svim.sh"
+
 source "$ITEM_DIR/cpu.sh"
-#source "$ITEM_DIR/svim.sh"
+source "$ITEM_DIR/weather.sh"
 
 sketchybar --hotload on
 
@@ -92,3 +101,18 @@ sketchybar --hotload on
 sketchybar --update
 
 echo "sketchybar configuation loaded.."
+
+sketchybar --add event aerospace_workspace_change
+
+for sid in $(aerospace list-workspaces --all); do
+  sketchybar --add item space.$sid left \
+    --subscribe space.$sid aerospace_workspace_change \
+    --set space.$sid \
+    background.color=0x44ffffff \
+    background.corner_radius=5 \
+    background.height=20 \
+    background.drawing=off \
+    label="$sid" \
+    click_script="aerospace workspace $sid" \
+    script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+done
