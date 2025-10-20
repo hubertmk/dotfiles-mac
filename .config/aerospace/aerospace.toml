@@ -216,7 +216,7 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-alt-r = 'mode resize'
+alt-r = 'mode reslze'
 
 [mode.resize.binding]
 h = 'resize width -50'
